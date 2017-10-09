@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>品牌系列</title>
+    <link rel="stylesheet" href="http://cdn.gezlife.net/webchat/PublicSignalC/common/css/weui.min.css" />
+    <link rel="stylesheet" href="http://cdn.gezlife.net/webchat/PublicSignalC/common/css/example.css">
+    <script src="http://cdn.gezlife.net/webchat/PublicSignalC/common/js/media.js"></script>
+    <script src="http://cdn.gezlife.net/webchat/PublicSignalC/common/js/jquery-1.10.2.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+<style>
+    body{
+        font-size: .24rem;
+        background-color: #eee;
+    }
+    section{
+        background: #fff;
+        padding-left: .3rem;
+    }
+    .line{
+        color: #333;
+        height: .98rem;
+        line-height: .98rem;
+        font-size: .28rem;
+        border-bottom: 1px solid #ddd;
+        padding-right: .2rem;
+        display: block;
+    }
+    .line span{
+        color: #333;
+        display: inline-block;
+        margin-right: 1.12rem;
+    }
+    .line strong{
+        color: #999;
+        font-weight: normal;
+    }
+    .line:nth-last-child(1){
+        border-bottom: none;
+    }
+</style>
+<body ontouchstart>
+    <section class="page picker js_show">
+        <a href="javascript:;"  id="showPicker"  class="line"><span>品牌</span><strong>请选择</strong></a>
+		<a href="javascript:;"  id="showDatePicker" class="line" ><span>日期</span><strong>请选择</strong></a>
+    </section>
+    <script type="text/javascript" class="picker js_show">
+        $('#showPicker').on('click', function () {
+            weui.picker([{
+                label: '飞机票',
+                value: '飞机票'
+            }, {
+                label: '火车票',
+                value: '火车票'
+            }, {
+                label: '的士票',
+                value: 2
+            },{
+                label: '公交票 (disabled)',
+                disabled: true,
+                value: 3
+            }, {
+                label: '其他',
+                value: 4
+            }], {
+                onChange: function (result) {
+                    console.log(result);
+                },
+                onConfirm: function (result) {
+                    $('#showPicker').find('strong').html(result)
+                }
+            });
+        });
+		$('#showDatePicker').on('click', function () {
+        weui.datePicker({
+            start: 1990,
+            end: new Date().getFullYear(),
+            onChange: function (result) {
+                console.log(result);
+            },
+            onConfirm: function (result) {
+                 $('#showDatePicker').find('strong').html(result)
+            }
+        });
+    });
+    </script>
+</body>
+</html>
